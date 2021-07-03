@@ -1,45 +1,29 @@
 import Hero from '../components/home-page/hero'
 import FeaturedPosts from '../components/home-page/featured-posts'
+import { Post } from '../typings'
+import { getFeaturedPosts } from '../lib/posts-util'
+import { GetStaticProps } from 'next'
 
-function HomePage() {
+type Props = {
+  posts: Post[]
+}
 
-  const DUMMY_POSTS = [
-    {
-      slug: 'getting-started',
-      title: 'Getting Started',
-      image: 'getting-started-nextjs.png',
-      excerpt: 'NextJS is a React framework for production',
-      date: '2022-02-15'
-    },
-    {
-      slug: 'getting-started2',
-      title: 'Getting Started',
-      image: 'getting-started-nextjs.png',
-      excerpt: 'NextJS is a React framework for production',
-      date: '2022-02-15'
-    },
-    {
-      slug: 'getting-started3',
-      title: 'Getting Started',
-      image: 'getting-started-nextjs.png',
-      excerpt: 'NextJS is a React framework for production',
-      date: '2022-02-15'
-    },
-    {
-      slug: 'getting-started4',
-      title: 'Getting Started',
-      image: 'getting-started-nextjs.png',
-      excerpt: 'NextJS is a React framework for production',
-      date: '2022-02-15'
-    }
-  ]
-
+function HomePage({ posts }: Props) {
   return (
     <>
       <Hero />
-      <FeaturedPosts posts={DUMMY_POSTS} />
+      <FeaturedPosts posts={posts} />
     </>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const featuredPosts = getFeaturedPosts()
+  return {
+    props: {
+      posts: featuredPosts
+    }
+  }
 }
 
 export default HomePage
