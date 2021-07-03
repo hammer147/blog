@@ -5,10 +5,10 @@ import { Post } from '../typings'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
-function getPostData(fileName: string) {
+function getPostData(fileName: string): Post {
   const filePath = path.join(postsDirectory, fileName)
   const fileContent = fs.readFileSync(filePath, 'utf8')
-  const {data, content} = matter(fileContent)
+  const { data, content } = matter(fileContent)
 
   const postSlug = fileName.replace(/\.md$/, '')
 
@@ -21,13 +21,13 @@ function getPostData(fileName: string) {
   return postData
 }
 
-export function getAllPosts() {
+export function getAllPosts(): Post[] {
   const postFiles = fs.readdirSync(postsDirectory)
   const allPosts = postFiles.map(postFile => getPostData(postFile))
 
   return allPosts.sort((postA, postB) => postA.date > postB.date ? -1 : 1)
 }
 
-export function getFeaturedPosts() {
+export function getFeaturedPosts(): Post[] {
   return getAllPosts().filter(post => post.isFeatured)
 }
