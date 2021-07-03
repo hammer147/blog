@@ -9,7 +9,7 @@ type Props = {
 }
 
 function PostDetailPage({ post }: Props) {
-  return <PostContent />
+  return <PostContent post={post} />
 }
 
 export const getStaticProps: GetStaticProps = async context => {
