@@ -5,7 +5,7 @@ import { Post } from '../typings'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
-export function getPostFiles(): string[] {
+export function getPostsFiles(): string[] {
   return fs.readdirSync(postsDirectory)
 }
 
@@ -30,7 +30,7 @@ export function getPostData(postIdentifier: string): Post {
 }
 
 export function getAllPosts(): Post[] {
-  const postFiles = getPostFiles()
+  const postFiles = getPostsFiles()
   const allPosts = postFiles.map(postFile => getPostData(postFile))
   return allPosts.sort((postA, postB) => postA.date > postB.date ? -1 : 1)
 }
