@@ -1,7 +1,7 @@
 ---
 title: 'Getting Started'
 date: '2021-06-27'
-image: 'getting-started-with-nextjs.png'
+image: 'getting-started-nextjs.png'
 excerpt: 'Next.js is a framework for production'
 isFeatured: true
 ---
