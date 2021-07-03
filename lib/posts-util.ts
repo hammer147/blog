@@ -5,12 +5,16 @@ import { Post } from '../typings'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
-function getPostData(fileName: string): Post {
-  const filePath = path.join(postsDirectory, fileName)
+/**
+ * Get post data from a slug
+ * @param postIdentifier A slug with or without .md extension
+ * @returns A post object
+ */
+function getPostData(postIdentifier: string): Post {
+  const postSlug = postIdentifier.replace(/\.md$/, '') // remove extension if present
+  const filePath = path.join(postsDirectory, `${postSlug}.md`)
   const fileContent = fs.readFileSync(filePath, 'utf8')
   const { data, content } = matter(fileContent)
-
-  const postSlug = fileName.replace(/\.md$/, '')
 
   const postData: Post = {
     slug: postSlug,
