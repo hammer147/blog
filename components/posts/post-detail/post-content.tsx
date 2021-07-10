@@ -13,11 +13,7 @@ function PostContent({ post }: Props) {
   const imagePath = `/images/posts/${post.slug}/${post.image}`
 
   // We want to use the Image component from Next.js
-<<<<<<< HEAD
   // img elements are wrapped in a p by react-markdown
-=======
-  // img elements are wrapped in p by react-markdown
->>>>>>> f0a1ba8c668b1fd0f5bafef904b84de4528e3a9a
   // Just replacing img with Image would cause a warning about a div in a p
   // therefor we replace each p that wraps an img with a div that wraps an Image
   // We are not using typings here because it is quite complex:
