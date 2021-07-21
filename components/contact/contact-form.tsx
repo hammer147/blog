@@ -10,8 +10,6 @@ type ContactDetails = {
   message: string
 }
 
-let notification: TNotification
-
 function ContactForm() {
 
   const [email, setEmail] = useState('')
@@ -57,6 +55,8 @@ function ContactForm() {
       setRequestStatus('error')
     }
   }
+
+  let notification: TNotification | null = null
 
   switch (requestStatus) {
     case 'pending':
