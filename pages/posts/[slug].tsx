@@ -1,5 +1,5 @@
+import Head from 'next/head'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import React from 'react'
 import PostContent from '../../components/posts/post-detail/post-content'
 import { getPostData, getPostsFiles } from '../../lib/posts-util'
 import { Post } from '../../typings'
@@ -9,7 +9,15 @@ type Props = {
 }
 
 function PostDetailPage({ post }: Props) {
-  return <PostContent post={post} />
+  return (
+    <>
+      <Head>
+        <title>{post.title}</title>
+        <meta name="description" content={post.excerpt} />
+      </Head>
+      <PostContent post={post} />
+    </>
+  )
 }
 
 export const getStaticProps: GetStaticProps = async context => {

@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Hero from '../components/home-page/hero'
 import FeaturedPosts from '../components/home-page/featured-posts'
 import { Post } from '../typings'
@@ -11,6 +12,13 @@ type Props = {
 function HomePage({ posts }: Props) {
   return (
     <>
+      <Head>
+        <title>Ben&apos;s Blog</title>
+        <meta
+          name="description"
+          content="I post about programming and web development"
+        />
+      </Head>
       <Hero />
       <FeaturedPosts posts={posts} />
     </>
