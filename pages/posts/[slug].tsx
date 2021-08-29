@@ -21,8 +21,7 @@ function PostDetailPage({ post }: Props) {
 }
 
 export const getStaticProps: GetStaticProps = async context => {
-  const { params } = context
-  const { slug } = params!
+  const { slug } = context.params!
 
   const postData = getPostData(slug as string)
 
@@ -34,11 +33,13 @@ export const getStaticProps: GetStaticProps = async context => {
   }
 }
 
-export const getStaticPaths: GetStaticPaths = async context => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const postFilenames = getPostsFiles()
   const slugs = postFilenames.map(fileName => fileName.replace(/\.md$/, ''))
+  const paths = slugs.map(slug => ({ params: { slug } }))
+  
   return {
-    paths: slugs.map(slug => ({ params: { slug } })),
+    paths,
     fallback: false
   }
 }
